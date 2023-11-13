@@ -14,15 +14,17 @@ function findCurrentIndex() {
 }
 
 // use the customData date which contains pre-resolved date info
-const date = computed(() => posts[findCurrentIndex()].date)
+const myDate = computed(() => posts[findCurrentIndex()].date)
 const nextPost = computed(() => posts[findCurrentIndex() - 1])
 const prevPost = computed(() => posts[findCurrentIndex() + 1])
+
+const base = "/blog"
 </script>
 
 <template>
   <article class="xl:divide-y xl:divide-gray-200 dark:xl:divide-slate-200/5">
     <header class="pt-6 xl:pb-10 space-y-1 text-center">
-      <Date :date="date" />
+      <!-- <Date :date="myDate" /> -->
       <h1
         class="text-3xl leading-9 font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14"
       >
@@ -51,7 +53,7 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
             Next Article
           </h2>
           <div class="link">
-            <a :href="nextPost.url">{{ nextPost.title }}</a>
+            <a :href="base+nextPost.url">{{ nextPost.title }}</a>
           </div>
         </div>
         <div v-if="prevPost" class="py-8">
@@ -61,7 +63,7 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
             Previous Article
           </h2>
           <div class="link">
-            <a :href="prevPost.url">{{ prevPost.title }}</a>
+            <a :href="base+prevPost.url">{{ prevPost.title }}</a>
           </div>
         </div>
         <div class="pt-8">
