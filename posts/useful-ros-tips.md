@@ -5,6 +5,10 @@ author: Baozhe Zhang
 twitter: '@baozhezhang'
 ---
 
+Useful ROS1 tips about callback queues and threads.
+
+---
+
 I've been extensively writing C++ code with ROS1 for about a year. Here are some tips I find that might help your development. 
 
 ## Use additional callback queues

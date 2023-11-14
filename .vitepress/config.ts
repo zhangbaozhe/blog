@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { genFeed } from './genFeed.js'
 
 export default defineConfig({
   title: "Baozhe's blog",
@@ -10,4 +11,5 @@ export default defineConfig({
     toc: { level: [ 1, 2 ]}, 
     math: true, 
   }, 
+  buildEnd: genFeed
 })

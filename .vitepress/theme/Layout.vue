@@ -18,6 +18,13 @@ const { page, frontmatter } = useData()
             >Baozhe's blog</span
           >
         </a>
+        <div class="text-sm text-gray-500 dark:text-white leading-5">
+          <a
+            class="hover:text-gray-700 dark:hover:text-gray-200"
+            href="/blog/feed.rss"
+            >RSS<span class="hidden sm:inline"> Feed</span></a
+          >
+        </div>
       </nav>
     </div>
     <main class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
