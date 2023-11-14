@@ -7,7 +7,7 @@ const baseUrl = `https://zhangbaozhe.github.io/blog`
 
 export async function genFeed(config: SiteConfig) {
   const feed = new Feed({
-    title: "Baozhe's blog'",
+    title: "Baozhe's blog",
     description: 'Robotics, AI, programming, and more.',
     id: baseUrl,
     link: baseUrl,
