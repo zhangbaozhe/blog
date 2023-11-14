@@ -6,7 +6,8 @@ export default defineConfig({
   cleanUrls: false,
   base: '/blog/', 
   markdown: {
-    toc: { level: [ 1 ]}, 
+    theme: 'material-theme-darker',  
+    toc: { level: [ 1, 2 ]}, 
     math: true, 
   }, 
 })
