@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Baozhe's blog'</title>
+        <link>https://zhangbaozhe.github.io/blog</link>
+        <description>Robotics, AI, programming, and more.</description>
+        <lastBuildDate>Tue, 14 Nov 2023 05:26:10 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Useful ROS Tips]]></title>
+            <link>https://zhangbaozhe.github.io/blog/posts/useful-ros-tips.html</link>
+            <guid>https://zhangbaozhe.github.io/blog/posts/useful-ros-tips.html</guid>
+            <pubDate>Tue, 14 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Useful ROS1 tips about callback queues and threads.</p>
+]]></description>
+            <content:encoded><![CDATA[<p>Useful ROS1 tips about callback queues and threads.</p>
+<hr>
+<p>I've been extensively writing C++ code with ROS1 for about a year. Here are some tips I find that might help your development.</p>
+<h2 id="use-additional-callback-queues" tabindex="-1">Use additional callback queues <a class="header-anchor" href="#use-additional-callback-queues" aria-label="Permalink to &quot;Use additional callback queues&quot;">&ZeroWidthSpace;</a></h2>
+<p>Sometimes you have a very important message that you do want to process it as fast as possible.</p>
+<div class="language-cpp"><button title="Copy Code" class="copy"></button><span class="lang">cpp</span><pre v-pre class="shiki material-theme-darker" ><code><span class="line"><span style="color: #FFCB6B">ros</span><span style="color: #89DDFF">::</span><span style="color: #EEFFFF">NodeHandle nh</span><span style="color: #89DDFF">;</span></span>
+<span class="line"><span style="color: #FFCB6B">ros</span><span style="color: #89DDFF">::</span><span style="color: #EEFFFF">CallbackQueue cq</span><span style="color: #89DDFF">;</span></span>
+<span class="line"><span style="color: #EEFFFF">nh</span><span style="color: #89DDFF">.</span><span style="color: #82AAFF">setCallbackQueue</span><span style="color: #89DDFF">(&amp;</span><span style="color: #EEFFFF">cq</span><span style="color: #89DDFF">);</span></span>
+<span class="line"><span style="color: #FFCB6B">ros</span><span style="color: #89DDFF">::</span><span style="color: #EEFFFF">Subscriber sub </span><span style="color: #89DDFF">=</span><span style="color: #EEFFFF"> nh</span><span style="color: #89DDFF">.</span><span style="color: #EEFFFF">subscribe</span><span style="color: #89DDFF">&lt;</span><span style="color: #FFCB6B">std_msgs</span><span style="color: #89DDFF">::</span><span style="color: #EEFFFF">String</span><span style="color: #89DDFF">&gt;(</span><span style="color: #89DDFF">&quot;</span><span style="color: #C3E88D">msg</span><span style="color: #89DDFF">&quot;</span><span style="color: #89DDFF">,</span><span style="color: #EEFFFF"> </span><span style="color: #F78C6C">1</span><span style="color: #89DDFF">,</span><span style="color: #EEFFFF"> </span></span>
+<span class="line"><span style="color: #EEFFFF">	</span><span style="color: #89DDFF">[&amp;](</span><span style="color: #C792EA">const</span><span style="color: #EEFFFF"> </span><span style="color: #FFCB6B">std_msgs</span><span style="color: #89DDFF">::</span><span style="color: #FFCB6B">String</span><span style="color: #89DDFF">::</span><span style="color: #FFCB6B">ConstPtr</span><span style="color: #EEFFFF"> </span><span style="color: #C792EA">&amp;</span><span style="color: #EEFFFF; font-style: italic">msg</span><span style="color: #89DDFF">){</span><span style="color: #545454; font-style: italic"> /* do something*/</span><span style="color: #EEFFFF"> </span><span style="color: #89DDFF">});</span></span>
+<span class="line"><span style="color: #FFCB6B">ros</span><span style="color: #89DDFF">::</span><span style="color: #82AAFF">spin</span><span style="color: #89DDFF">();</span></span></code></pre>
+</div><p>Usually, if you do not set an additional callback queue, ROS will set a global callback queue for every message you subscribe in your node. This can be disrupting for your application if you have some VIP messages need to process.</p>
+<h2 id="leave-heavy-tasks-out-of-callbacks" tabindex="-1">Leave heavy tasks out of callbacks <a class="header-anchor" href="#leave-heavy-tasks-out-of-callbacks" aria-label="Permalink to &quot;Leave heavy tasks out of callbacks&quot;">&ZeroWidthSpace;</a></h2>
+<p>Callbacks are executed when messages come to a node. If one callback has to be processed with a long time (and assuming you are using a global callback queue), then with great possibility that your other messages will be stuck.
+My practice for callbacks is that I will let the callbacks always perform copy tasks and leave the main logic in main loop or some worker threads.</p>
+<h2 id="thread-safety" tabindex="-1">Thread safety <a class="header-anchor" href="#thread-safety" aria-label="Permalink to &quot;Thread safety&quot;">&ZeroWidthSpace;</a></h2>
+<p>ROS guarantees that callbacks are thread safe. However, a user-customized thread is not thread safe with a ROS callback. That is, if there are read-and-write operations performed at the same time in the two threads, you may need to add locks or mutexes.</p>
+]]></content:encoded>
+        </item>
+    </channel>
+</rss>
