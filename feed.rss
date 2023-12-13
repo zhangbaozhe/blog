@@ -4,14 +4,14 @@
         <title>Baozhe's blog</title>
         <link>https://zhangbaozhe.github.io/blog</link>
         <description>Robotics, AI, programming, and more.</description>
-        <lastBuildDate>Tue, 14 Nov 2023 05:37:38 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 13 Dec 2023 06:17:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
             <title><![CDATA[Useful ROS Tips]]></title>
-            <link>https://zhangbaozhe.github.io/blog/posts/useful-ros-tips.html</link>
-            <guid>https://zhangbaozhe.github.io/blog/posts/useful-ros-tips.html</guid>
+            <link>https://zhangbaozhe.github.io/blog/posts/useful-ros-tips</link>
+            <guid>https://zhangbaozhe.github.io/blog/posts/useful-ros-tips</guid>
             <pubDate>Tue, 14 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<p>Useful ROS1 tips about callback queues and threads.</p>
 ]]></description>
