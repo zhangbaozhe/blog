@@ -71,7 +71,9 @@ const base = "/blog"
           <a class="link" href="/">← Back to the blog</a>
         </div>
       </footer>
-      <Giscus
+    </div>
+  </article>
+  <Giscus
         id="comments"
         repo="zhangbaozhe/blog"
         repoId="R_kgDOKs2H7Q"
@@ -87,6 +89,4 @@ const base = "/blog"
         crossorigin="anonymous"
         loading="lazy"
       />
-    </div>
-  </article>
 </template>
