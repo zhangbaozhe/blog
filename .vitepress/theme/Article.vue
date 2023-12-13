@@ -3,6 +3,7 @@ import Date from './Date.vue'
 import Author from './Author.vue'
 import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
+import Giscus from '@giscus/vue'
 import { data as posts } from './posts.data.js'
 
 const { frontmatter: data } = useData()
@@ -70,6 +71,22 @@ const base = "/blog"
           <a class="link" href="/">← Back to the blog</a>
         </div>
       </footer>
+      <Giscus
+        id="comments"
+        repo="zhangbaozhe/blog"
+        repoId="R_kgDOKs2H7Q"
+        category="General"
+        categoryId="DIC_kwDOKs2H7c4Cbsu4"
+        mapping="pathname"
+        strict="0"
+        reactionsEnabled="1"
+        emitMetadata="0"
+        inputPosition="bottom"
+        theme="preferred_color_scheme"
+        lang="en"
+        crossorigin="anonymous"
+        loading="lazy"
+      />
     </div>
   </article>
 </template>
